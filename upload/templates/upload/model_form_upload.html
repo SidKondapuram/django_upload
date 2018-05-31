@@ -1,15 +1,17 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<div align="center" style="margin-top: 20vh; font-family: Lucida Console;">
-  <h3>Upload Billing Files</h3>
-</div>
-<div align="center">
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary" style="margin-top: 3vh">Upload</button>
-  </form>
-  <p><a href="{% url 'index' %}" class="btn btn-info" style="margin-top: 3vh">Return to index</a></p>
-</div>
+{% if user.is_authenticated %}
+  <div align="center" style="margin-top: 20vh; font-family: Lucida Console;">
+    <h3>Upload Billing Files</h3>
+  </div>
+  <div align="center">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary" style="margin-top: 3vh">Upload</button>
+    </form>
+    <p><a href="{% url 'index' %}" class="btn btn-info" style="margin-top: 3vh">Return to index</a></p>
+  </div>
+  {% endif %} 
 {% endblock %}
